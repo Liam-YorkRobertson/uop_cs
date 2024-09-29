@@ -1,4 +1,4 @@
-# workign with recursion and conditionals
+# working with recursion and conditionals
 
 # countdown function from section 5.8 of textbook
 def countdown(n): 
