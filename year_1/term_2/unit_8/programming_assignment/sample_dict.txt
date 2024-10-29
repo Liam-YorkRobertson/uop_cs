@@ -1,0 +1,8 @@
+{ 
+metal: Slipknot, Metallica
+blues: Ray Charles
+pop: Taylor Swift
+rock: ACDC, Metallica
+jazz: Frank Sinatra
+country: Johnny Cash, Taylor Swift
+}

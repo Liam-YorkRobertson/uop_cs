@@ -1,0 +1,9 @@
+{
+Slipknot: metal
+Metallica: metal, rock
+Ray Charles: blues
+Taylor Swift: pop, country
+ACDC: rock
+Frank Sinatra: jazz
+Johnny Cash: country
+}
