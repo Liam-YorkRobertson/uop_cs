@@ -1,0 +1,30 @@
+.rounded-box {
+    -fx-border-color: #1e3a5f;
+    -fx-border-width: 2px;
+    -fx-border-radius: 15px;
+    -fx-background-radius: 15px;
+    -fx-background-color: rgba(245, 248, 255, 0.65);
+    -fx-padding: 10px;
+    -fx-text-fill: #1e3a5f;
+    -fx-font-family: "Georgia", serif;
+}
+
+.button {
+    -fx-border-color: #1e3a5f;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-background-color: #1e3a5f;
+    -fx-font-family: "Georgia", serif;
+    -fx-font-size: 14px;
+    -fx-text-fill: white;
+}
+
+.button:hover {
+    -fx-background-color: #144269;
+}
+
+.label {
+    -fx-font-family: "Georgia", serif;
+    -fx-font-size: 15px;
+    -fx-text-fill: #1e3a5f;
+}

@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.SplitMenuButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="840.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="liamyorkrobertson.weatherapp.WeatherController">
+   <children>
+      <AnchorPane id="root_anchor" fx:id="root_anchor" prefHeight="850.0" prefWidth="1320.0">
+         <children>
+            <VBox fx:id="vbox_current" prefHeight="840.0" prefWidth="1310.0" spacing="10.0">
+               <children>
+                  <AnchorPane prefHeight="260.0" prefWidth="1260.0">
+                     <children>
+                        <ImageView fx:id="backgroundImageView" fitHeight="840.0" fitWidth="1300.0" opacity="0.8" preserveRatio="false" />
+                        <Pane fx:id="current_loc_bg" layoutX="25.0" layoutY="25.0" prefHeight="240.0" prefWidth="420.0" styleClass="rounded-box" stylesheets="@WeatherUIStyle.css">
+                           <children>
+                              <Label layoutX="21.0" layoutY="14.0" prefHeight="25.0" prefWidth="400.0" text="Enter the location for which you want to check the weather:">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font></Label>
+                              <RadioButton fx:id="locationRadioButton" layoutX="20.0" layoutY="50.0" mnemonicParsing="false" text="Location">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="areaToggleGroup" />
+                                 </toggleGroup>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </RadioButton>
+                              <RadioButton fx:id="coordinatesRadioButton" layoutX="150.0" layoutY="50.0" mnemonicParsing="false" text="Co-ordinates" textAlignment="CENTER" toggleGroup="$areaToggleGroup">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></RadioButton>
+                              <TextField fx:id="locationTextField" layoutX="20.0" layoutY="90.0" prefHeight="30.0" prefWidth="300.0" />
+                              <Label layoutX="20.0" layoutY="130.0" prefHeight="25.0" prefWidth="380.0" text="Choose your measurement system:" />
+                              <SplitMenuButton fx:id="temperatureSplitMenu" layoutX="20.0" layoutY="167.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="142.0" text="Temperature">
+                                 <items>
+                                    <MenuItem fx:id="celsiusMenuItem" mnemonicParsing="false" onAction="#handleTemperatureUnitChange" text="Celsius" />
+                                    <MenuItem fx:id="fahrenheitMenuItem" mnemonicParsing="false" onAction="#handleTemperatureUnitChange" text="Fahrenheit" />
+                                 </items>
+                              </SplitMenuButton>
+                              <SplitMenuButton fx:id="windSpeedSplitMenu" layoutX="185.0" layoutY="167.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="142.0" text="Wind Speed">
+                                 <items>
+                                    <MenuItem fx:id="kmhMenuItem" mnemonicParsing="false" onAction="#handleWindSpeedUnitChange" text="Kph" />
+                                    <MenuItem fx:id="mphMenuItem" mnemonicParsing="false" onAction="#handleWindSpeedUnitChange" text="Mph" />
+                                 </items>
+                              </SplitMenuButton>
+                              <Button fx:id="fetchWeatherButton" layoutX="320.0" layoutY="90.0" mnemonicParsing="false" onAction="#handleGetWeather" prefHeight="30.0" prefWidth="70.0" text="Search">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font></Button>
+                           </children>
+                        </Pane>
+                        <Pane fx:id="current_loc_det_bg" layoutX="470.0" layoutY="25.0" prefHeight="240.0" prefWidth="810.0" styleClass="rounded-box" stylesheets="@WeatherUIStyle.css">
+                           <children>
+                              <Label layoutX="20.0" layoutY="20.0" prefHeight="25.0" prefWidth="100.0" text="Temperature:" />
+                              <Label layoutX="20.0" layoutY="78.0" prefHeight="25.0" prefWidth="100.0" text="Humidity:" />
+                              <Label layoutX="20.0" layoutY="134.0" prefHeight="25.0" prefWidth="100.0" text="Wind speed:" />
+                              <Label layoutX="20.0" layoutY="189.0" prefHeight="25.0" prefWidth="100.0" text="Condition:" />
+                              <Label fx:id="temperatureLabel" layoutX="155.0" layoutY="20.0" prefHeight="25.0" prefWidth="100.0" text="-" />
+                              <Label fx:id="humidityLabel" layoutX="155.0" layoutY="78.0" prefHeight="25.0" prefWidth="100.0" text="-" />
+                              <Label fx:id="windSpeedLabel" layoutX="155.0" layoutY="134.0" prefHeight="25.0" prefWidth="100.0" text="-" />
+                              <Label fx:id="conditionLabel" layoutX="155.0" layoutY="189.0" prefHeight="25.0" prefWidth="100.0" text="-" />
+                              <ImageView fx:id="weatherImageView" fitHeight="150.0" fitWidth="165.0" layoutX="427.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true" />
+                           </children>
+                        </Pane>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </VBox>
+            <VBox fx:id="vbox_forecast" layoutX="10.0" layoutY="280.0" prefHeight="260.0" prefWidth="1260.0" spacing="10.0">
+               <children>
+                  <AnchorPane prefHeight="260.0" prefWidth="1260.0">
+                        <children>
+                           <Pane fx:id="forecast_bg" layoutX="15.0" layoutY="15.0" prefHeight="240.0" prefWidth="1254.0" styleClass="rounded-box" stylesheets="@WeatherUIStyle.css">
+                              <children>
+                                    <Label layoutX="20.0" layoutY="10.0" prefHeight="25.0" prefWidth="450.0" text="Weather forecast for the following 3 days for your chosen location:" />
+                                    <Pane fx:id="current_loc_det_bg1" layoutX="20.0" layoutY="43.0" prefHeight="183.0" prefWidth="381.0" styleClass="rounded-box" stylesheets="@WeatherUIStyle.css">
+                                       <children>
+                                          <Label layoutX="21.0" layoutY="28.0" text="Temperature:" />
+                                          <Label layoutX="21.0" layoutY="67.0" text="Humidity:" />
+                                          <Label layoutX="21.0" layoutY="108.0" text="Wind speed:" />
+                                          <Label layoutX="21.0" layoutY="148.0" text="Condition:" />
+                                          <Label fx:id="tVar1" layoutX="145.0" layoutY="28.0" text="-" />
+                                          <Label fx:id="hVar1" layoutX="145.0" layoutY="67.0" text="-" />
+                                          <Label fx:id="wVar1" layoutX="145.0" layoutY="108.0" text="-" />
+                                          <Label fx:id="cVar1" layoutX="145.0" layoutY="148.0" text="-" />
+                                          <ImageView fx:id="weatherIcon1" fitHeight="118.0" fitWidth="124.0" layoutX="237.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" />
+                                          <Label fx:id="dateVar1" layoutX="145.0" layoutY="5.0" text="-" />
+                                       </children>
+                                    </Pane>
+                                    <Pane fx:id="current_loc_det_bg2" layoutX="439.0" layoutY="43.0" prefHeight="183.0" prefWidth="381.0" styleClass="rounded-box" stylesheets="@WeatherUIStyle.css">
+                                       <children>
+                                          <Label layoutX="21.0" layoutY="28.0" text="Temperature:" />
+                                          <Label layoutX="21.0" layoutY="67.0" text="Humidity:" />
+                                          <Label layoutX="21.0" layoutY="108.0" text="Wind speed:" />
+                                          <Label layoutX="21.0" layoutY="148.0" text="Condition:" />
+                                          <Label fx:id="tVar2" layoutX="145.0" layoutY="28.0" text="-" />
+                                          <Label fx:id="hVar2" layoutX="145.0" layoutY="67.0" text="-" />
+                                          <Label fx:id="wVar2" layoutX="145.0" layoutY="108.0" text="-" />
+                                          <Label fx:id="cVar2" layoutX="145.0" layoutY="148.0" text="-" />
+                                          <ImageView fx:id="weatherIcon2" fitHeight="118.0" fitWidth="124.0" layoutX="237.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" />
+                                          <Label fx:id="dateVar2" layoutX="145.0" layoutY="5.0" text="-" />
+                                       </children>
+                                    </Pane>
+                                    <Pane fx:id="current_loc_det_bg3" layoutX="860.0" layoutY="43.0" prefHeight="183.0" prefWidth="366.0" styleClass="rounded-box" stylesheets="@WeatherUIStyle.css">
+                                       <children>
+                                          <Label layoutX="21.0" layoutY="28.0" text="Temperature:" />
+                                          <Label layoutX="21.0" layoutY="67.0" text="Humidity:" />
+                                          <Label layoutX="21.0" layoutY="108.0" text="Wind speed:" />
+                                          <Label layoutX="21.0" layoutY="148.0" text="Condition:" />
+                                          <Label fx:id="tVar3" layoutX="145.0" layoutY="28.0" text="-" />
+                                          <Label fx:id="hVar3" layoutX="145.0" layoutY="67.0" text="-" />
+                                          <Label fx:id="wVar3" layoutX="145.0" layoutY="108.0" text="-" />
+                                          <Label fx:id="cVar3" layoutX="145.0" layoutY="148.0" text="-" />
+                                          <ImageView fx:id="weatherIcon3" fitHeight="118.0" fitWidth="124.0" layoutX="237.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" />
+                                          <Label fx:id="dateVar3" layoutX="145.0" layoutY="5.0" text="-" />
+                                       </children>
+                                    </Pane>
+                              </children>
+                           </Pane>
+                        </children>
+                  </AnchorPane>
+               </children>
+            </VBox>
+            <VBox fx:id="vbox_history" layoutX="10.0" layoutY="550.0" prefHeight="240.0" prefWidth="1260.0" spacing="10.0">
+               <children>
+                  <AnchorPane prefHeight="240.0" prefWidth="1260.0">
+                     <children>
+                        <Pane fx:id="history_bg1" layoutX="15.0" layoutY="15.0" prefHeight="240.0" prefWidth="1254.0" styleClass="rounded-box" stylesheets="@WeatherUIStyle.css">
+                           <children>
+                              <Pane fx:id="historyPane1" layoutX="30.0" layoutY="45.0" prefHeight="165.0" prefWidth="193.0" styleClass="rounded-box" stylesheets="@WeatherUIStyle.css">
+                                 <children>
+                                    <Label fx:id="historyDateVar1" layoutX="26.0" layoutY="10.0" prefHeight="29.0" prefWidth="100.0" text="-" />
+                                    <Label fx:id="historyTimeVar1" layoutX="26.0" layoutY="50.0" prefHeight="29.0" prefWidth="100.0" text="-" />
+                                    <Label fx:id="historyCityVar1" layoutX="26.0" layoutY="90.0" prefHeight="29.0" prefWidth="100.0" text="-" />
+                                    <Label fx:id="historyCoordVar1" layoutX="26.0" layoutY="130.0" text="-" />
+                                 </children>
+                              </Pane>
+                              <Pane fx:id="historyPane2" layoutX="285.0" layoutY="45.0" prefHeight="165.0" prefWidth="193.0" styleClass="rounded-box" stylesheets="@WeatherUIStyle.css">
+                                 <children>
+                                    <Label fx:id="historyDateVar2" layoutX="26.0" layoutY="10.0" prefHeight="29.0" prefWidth="100.0" text="-" />
+                                    <Label fx:id="historyTimeVar2" layoutX="26.0" layoutY="50.0" prefHeight="29.0" prefWidth="100.0" text="-" />
+                                    <Label fx:id="historyCityVar2" layoutX="26.0" layoutY="90.0" prefHeight="29.0" prefWidth="100.0" text="-" />
+                                    <Label fx:id="historyCoordVar2" layoutX="26.0" layoutY="130.0" text="-" />
+                                 </children>
+                              </Pane>
+                              <Pane fx:id="historyPane3" layoutX="543.0" layoutY="45.0" prefHeight="165.0" prefWidth="193.0" styleClass="rounded-box" stylesheets="@WeatherUIStyle.css">
+                                 <children>
+                                    <Label fx:id="historyDateVar3" layoutX="26.0" layoutY="10.0" prefHeight="29.0" prefWidth="100.0" text="-" />
+                                    <Label fx:id="historyTimeVar3" layoutX="26.0" layoutY="50.0" prefHeight="29.0" prefWidth="100.0" text="-" />
+                                    <Label fx:id="historyCityVar3" layoutX="26.0" layoutY="90.0" prefHeight="29.0" prefWidth="100.0" text="-" />
+                                    <Label fx:id="historyCoordVar3" layoutX="26.0" layoutY="130.0" prefHeight="29.0" prefWidth="100.0" text="-" />
+                                 </children>
+                              </Pane>
+                              <Pane fx:id="historyPane4" layoutX="788.0" layoutY="45.0" prefHeight="165.0" prefWidth="193.0" styleClass="rounded-box" stylesheets="@WeatherUIStyle.css">
+                                 <children>
+                                    <Label fx:id="historyDateVar4" layoutX="26.0" layoutY="10.0" prefHeight="29.0" prefWidth="100.0" text="-" />
+                                    <Label fx:id="historyTimeVar4" layoutX="26.0" layoutY="50.0" prefHeight="29.0" prefWidth="100.0" text="-" />
+                                    <Label fx:id="historyCityVar4" layoutX="26.0" layoutY="90.0" prefHeight="29.0" prefWidth="100.0" text="-" />
+                                    <Label fx:id="historyCoordVar4" layoutX="26.0" layoutY="130.0" prefHeight="29.0" prefWidth="100.0" text="-" />
+                                 </children>
+                              </Pane>
+                              <Pane fx:id="historyPane5" layoutX="1033.0" layoutY="45.0" prefHeight="165.0" prefWidth="193.0" styleClass="rounded-box" stylesheets="@WeatherUIStyle.css">
+                                 <children>
+                                    <Label fx:id="historyDateVar5" layoutX="26.0" layoutY="10.0" prefHeight="29.0" prefWidth="100.0" text="-" />
+                                    <Label fx:id="historyTimeVar5" layoutX="26.0" layoutY="50.0" prefHeight="29.0" prefWidth="100.0" text="-" />
+                                    <Label fx:id="historyCityVar5" layoutX="26.0" layoutY="90.0" prefHeight="29.0" prefWidth="100.0" text="-" />
+                                    <Label fx:id="historyCoordVar5" layoutX="26.0" layoutY="130.0" prefHeight="29.0" prefWidth="100.0" text="-" />
+                                 </children>
+                              </Pane>
+                              <Label layoutX="28.0" layoutY="14.0" prefHeight="17.0" prefWidth="366.0" text="Previous searches:" />
+                           </children>
+                        </Pane>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </children>
+</HBox>
