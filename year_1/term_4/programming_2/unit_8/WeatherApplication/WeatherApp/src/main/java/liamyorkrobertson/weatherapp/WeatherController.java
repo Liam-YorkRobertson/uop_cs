@@ -214,7 +214,7 @@ public class WeatherController {
      * Fetches weather forecast for specified location and updates forecast UI.
      * 
      * @param location location or coordinates to fetch forecast for
-     * @param unit unit system to use (e.g., "imperial" or "metric")
+     * @param unit unit system to use
      * @throws IOException if input/output error occurs
      * @throws InterruptedException if HTTP request is interrupted
      */
@@ -329,7 +329,7 @@ public class WeatherController {
      * Builds API URL for fetching weather data based on specified location and unit system.
      * 
      * @param location location or coordinates
-     * @param unit unit system to use (e.g., "imperial" or "metric")
+     * @param unit unit system to use
      * @return constructed API URL
      */
     private String buildApiUrl(String location, String unit) {
@@ -387,8 +387,8 @@ public class WeatherController {
      * @param applyConversion whether to apply unit conversion
      */
     private void updateDisplayedValues(boolean applyConversion) {
-        double displayedTemperature = rawTemperature; // Use a local variable for temperature conversions
-        double displayedWindSpeed = rawWindSpeed; // Use a local variable for wind speed conversions
+        double displayedTemperature = rawTemperature;
+        double displayedWindSpeed = rawWindSpeed;
         double[] displayedForecastTemps = {rawForecastTemp1, rawForecastTemp2, rawForecastTemp3};
         double[] displayedForecastWinds = {rawForecastWind1, rawForecastWind2, rawForecastWind3};
         String temperatureUnit = "°F", windSpeedUnit = "mph";
