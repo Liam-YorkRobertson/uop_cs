@@ -22,7 +22,7 @@ public class App extends Application {
      * Starts the JavaFX application.
      * Sets up the primary stage with the initial scene and displays it.
      * 
-     * @param stage the primary stage for this application
+     * @param stage primary stage for this application
      * @throws IOException if an error occurs while loading the FXML file
      */
     @Override
